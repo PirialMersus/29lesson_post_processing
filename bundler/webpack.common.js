@@ -68,6 +68,32 @@ module.exports = {
                     }
                 ]
             },
+            {
+                test: /\.(gltf|glb)$/,
+                use: [
+                    {
+                        loader: "gltf-webpack-loader",
+                    },
+                ],
+            },
+            {
+                test: /\.(bin)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {},
+                    },
+                ],
+            },
+            // {
+            //     test: /\.(glb|gltf)$/,
+            //     use:
+            //         [
+            //             {
+            //                 loader: 'file-loader',
+            //             }
+            //         ]
+            // },
 
             // Fonts
             {

@@ -12,6 +12,16 @@ import {SMAAPass} from "three/examples/jsm/postprocessing/SMAAPass";
 import {UnrealBloomPass} from "three/examples/jsm/postprocessing/UnrealBloomPass";
 import * as dat from 'dat.gui'
 
+import img1 from "../static/textures/environmentMaps/0/px.jpg"
+import img2 from "../static/textures/environmentMaps/0/nx.jpg"
+import img3 from "../static/textures/environmentMaps/0/py.jpg"
+import img4 from "../static/textures/environmentMaps/0/ny.jpg"
+import img5 from "../static/textures/environmentMaps/0/pz.jpg"
+import img6 from "../static/textures/environmentMaps/0/nz.jpg"
+import interfaceNormalMap from "../static/textures/interfaceNormalMap.png"
+
+import helmet from "../static/models/DamagedHelmet/glTF/DamagedHelmet.gltf";
+
 /**
  * Base
  */
@@ -48,13 +58,14 @@ const updateAllMaterials = () => {
 /**
  * Environment map
  */
+
 const environmentMap = cubeTextureLoader.load([
-    '/textures/environmentMaps/0/px.jpg',
-    '/textures/environmentMaps/0/nx.jpg',
-    '/textures/environmentMaps/0/py.jpg',
-    '/textures/environmentMaps/0/ny.jpg',
-    '/textures/environmentMaps/0/pz.jpg',
-    '/textures/environmentMaps/0/nz.jpg'
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
 ])
 environmentMap.encoding = THREE.sRGBEncoding
 
@@ -65,7 +76,7 @@ scene.environment = environmentMap
  * Models
  */
 gltfLoader.load(
-    '/models/DamagedHelmet/glTF/DamagedHelmet.gltf',
+    helmet,
     (gltf) => {
         gltf.scene.scale.set(2, 2, 2)
         gltf.scene.rotation.y = Math.PI * 0.5
@@ -266,7 +277,7 @@ const DisplacementShader = {
 }
 const displacementPass = new ShaderPass(DisplacementShader)
 displacementPass.material.uniforms.uNormalMap.value = textureLoader.load(
-    '/textures/interfaceNormalMap.png'
+    interfaceNormalMap
 )
 effectComposer.addPass(displacementPass)
 
